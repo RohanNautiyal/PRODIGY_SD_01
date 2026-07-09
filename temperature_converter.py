@@ -23,6 +23,12 @@ Kelvin      : {kelvin:.2f} K"""
 Kelvin      : {kelvin:.2f} K"""
 
         elif unit == "Kelvin":
+            if temp < 0:
+                messagebox.showerror(
+                    "Invalid Temperature",
+                    "Kelvin cannot be less than 0."
+            )
+            return
             celsius = temp - 273.15
             fahrenheit = (celsius * 9/5) + 32
 
@@ -131,4 +137,5 @@ result_label = tk.Label(
 
 result_label.pack(pady=20)
 root.bind("<Return>", lambda event: convert_temperature())
+temp_entry.focus_set()
 root.mainloop()
