@@ -49,20 +49,33 @@ root = tk.Tk()
 root.title("Temperature Converter")
 root.geometry("500x450")
 root.resizable(False, False)
+root.configure(bg="#F5F7FA")
 
 title = tk.Label(
     root,
     text="🌡 Temperature Converter",
-    font=("Arial",20,"bold")
+    font=("Segoe UI", 20, "bold"),
+    bg="#F5F7FA",
+    fg="#1E3A8A"
 )
 title.pack(pady=20)
 
-tk.Label(root,text="Enter Temperature:",font=("Arial",12)).pack()
+tk.Label(
+    root,
+    text="Enter Temperature:",
+    font=("Segoe UI",12),
+    bg="#F5F7FA"
+).pack()
 
 temp_entry = tk.Entry(root,font=("Arial",14),width=20)
 temp_entry.pack(pady=10)
 
-tk.Label(root,text="Select Unit:",font=("Arial",12)).pack()
+tk.Label(
+    root,
+    text="Select Unit:",
+    font=("Segoe UI",12),
+    bg="#F5F7FA"
+).pack()
 
 unit_var = tk.StringVar()
 
@@ -80,8 +93,13 @@ unit_dropdown.pack(pady=10)
 convert_btn = tk.Button(
     root,
     text="Convert",
-    font=("Arial",12,"bold"),
+    font=("Segoe UI",12,"bold"),
     width=15,
+    bg="#2563EB",
+    fg="white",
+    activebackground="#1D4ED8",
+    activeforeground="white",
+    relief="flat",
     command=convert_temperature
 )
 
@@ -90,8 +108,13 @@ convert_btn.pack(pady=20)
 clear_btn = tk.Button(
     root,
     text="Clear",
-    font=("Arial", 12, "bold"),
+    font=("Segoe UI",12,"bold"),
     width=15,
+    bg="#DC2626",
+    fg="white",
+    activebackground="#B91C1C",
+    activeforeground="white",
+    relief="flat",
     command=clear_fields
 )
 
@@ -100,7 +123,9 @@ clear_btn.pack(pady=5)
 result_label = tk.Label(
     root,
     text="Converted values will appear here.",
-    font=("Arial",12),
+    font=("Segoe UI",12),
+    bg="#F5F7FA",
+    fg="#111827",
     justify="left"
 )
 
