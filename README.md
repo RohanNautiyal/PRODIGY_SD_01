@@ -75,7 +75,7 @@ python temperature_converter.py
 ## Screenshots
 
 ### Home Screen
-![Home Screen](screenshots/home.png)
+![Home Screen](screenshots/main.png)
 
 ### Temperature Conversion
 ![Conversion](screenshots/conversion.png)
