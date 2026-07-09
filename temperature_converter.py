@@ -32,7 +32,16 @@ Fahrenheit : {fahrenheit:.2f} °F"""
         result_label.config(text=result)
 
     except ValueError:
-        messagebox.showerror("Invalid Input", "Please enter a valid number.")
+        messagebox.showerror(
+        "Invalid Input",
+        "Please enter a valid numeric temperature."
+    )
+    temp_entry.focus_set()
+    
+def clear_fields():
+    temp_entry.delete(0, tk.END)
+    unit_dropdown.current(0)
+    result_label.config(text="Converted values will appear here.")
 
 # ---------------- Main Window ---------------- #
 
@@ -78,6 +87,16 @@ convert_btn = tk.Button(
 
 convert_btn.pack(pady=20)
 
+clear_btn = tk.Button(
+    root,
+    text="Clear",
+    font=("Arial", 12, "bold"),
+    width=15,
+    command=clear_fields
+)
+
+clear_btn.pack(pady=5)
+
 result_label = tk.Label(
     root,
     text="Converted values will appear here.",
@@ -86,5 +105,5 @@ result_label = tk.Label(
 )
 
 result_label.pack(pady=20)
-
+root.bind("<Return>", lambda event: convert_temperature())
 root.mainloop()
