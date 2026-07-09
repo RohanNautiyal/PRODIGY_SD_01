@@ -1,59 +1,90 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 
-# Create main window
+# ---------------- Conversion Function ---------------- #
+
+def convert_temperature():
+    try:
+        temp = float(temp_entry.get())
+        unit = unit_var.get()
+
+        if unit == "Celsius":
+            fahrenheit = (temp * 9/5) + 32
+            kelvin = temp + 273.15
+
+            result = f"""Fahrenheit : {fahrenheit:.2f} °F
+Kelvin      : {kelvin:.2f} K"""
+
+        elif unit == "Fahrenheit":
+            celsius = (temp - 32) * 5/9
+            kelvin = celsius + 273.15
+
+            result = f"""Celsius     : {celsius:.2f} °C
+Kelvin      : {kelvin:.2f} K"""
+
+        elif unit == "Kelvin":
+            celsius = temp - 273.15
+            fahrenheit = (celsius * 9/5) + 32
+
+            result = f"""Celsius     : {celsius:.2f} °C
+Fahrenheit : {fahrenheit:.2f} °F"""
+
+        result_label.config(text=result)
+
+    except ValueError:
+        messagebox.showerror("Invalid Input", "Please enter a valid number.")
+
+# ---------------- Main Window ---------------- #
+
 root = tk.Tk()
 root.title("Temperature Converter")
 root.geometry("500x450")
 root.resizable(False, False)
 
-# Heading
 title = tk.Label(
     root,
     text="🌡 Temperature Converter",
-    font=("Arial", 20, "bold")
+    font=("Arial",20,"bold")
 )
 title.pack(pady=20)
 
-# Temperature input
-tk.Label(root, text="Enter Temperature:", font=("Arial", 12)).pack()
+tk.Label(root,text="Enter Temperature:",font=("Arial",12)).pack()
 
-temp_entry = tk.Entry(root, font=("Arial", 14), width=20)
+temp_entry = tk.Entry(root,font=("Arial",14),width=20)
 temp_entry.pack(pady=10)
 
-# Unit selection
-tk.Label(root, text="Select Unit:", font=("Arial", 12)).pack()
+tk.Label(root,text="Select Unit:",font=("Arial",12)).pack()
 
 unit_var = tk.StringVar()
 
 unit_dropdown = ttk.Combobox(
     root,
     textvariable=unit_var,
-    values=["Celsius", "Fahrenheit", "Kelvin"],
+    values=["Celsius","Fahrenheit","Kelvin"],
     state="readonly",
-    width=18,
-    font=("Arial", 12)
+    font=("Arial",12)
 )
 
 unit_dropdown.current(0)
 unit_dropdown.pack(pady=10)
 
-# Convert button
 convert_btn = tk.Button(
     root,
     text="Convert",
-    font=("Arial", 12, "bold"),
-    width=15
+    font=("Arial",12,"bold"),
+    width=15,
+    command=convert_temperature
 )
+
 convert_btn.pack(pady=20)
 
-# Result Label
 result_label = tk.Label(
     root,
     text="Converted values will appear here.",
-    font=("Arial", 12),
+    font=("Arial",12),
     justify="left"
 )
+
 result_label.pack(pady=20)
 
 root.mainloop()
